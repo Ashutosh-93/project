@@ -21,7 +21,6 @@ const signupController = async (req,res)=>{
 }catch(err){
     console.log(err);
 }
-    
-
+    // this is elon musk
 }
 module.exports = signupController
