@@ -1,6 +1,6 @@
 const userModel = require('../models/user');
 const {hashPassword,comparePassword} = require('../utils/bcryptUtils');
-const bcryptUtils = require('../utils/bcryptUtils');
+const bcryptUtils = require('../utils/bcryptUtils'); 
 const signupController = async (req,res)=>{
     try{
     let {name,email,password} = req.body;

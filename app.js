@@ -4,7 +4,10 @@ const ejs = require('ejs');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
-const signin = require('./routes/signIn')
+const signin = require('./routes/signIn');
+const createProduct = require('./routes/createProduct');
+const shop = require('./routes/shopRoute');
+const landingPage = require('./routes/shopRoute');
 
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname,'public')));
@@ -13,10 +16,14 @@ app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 
 
+
 app.get('/',(req,res)=>{
     res.render('loginAndSignup');
 });
+app.use('/',landingPage);
 app.use('/user',signin);
+app.use('/owner',createProduct);
+app.use('/shop',shop);
 // app.get('/',(req,res)=>{
 //     res.render('landing');
 // })

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Ranch</title>
+    <link rel="stylesheet" href="/stylesheets/shop.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Ranch</h1>
+            </div>
+            <ul>
+                <li><a href="/landing">Home</a></li>
+               
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/help">Help</a></li>
+                <li><a href="/user/signin">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="product-grid">
+            <% products.forEach(function(product) { %>
+                <div class="product-card">
+                    <img src="data:image/png;base64,<%= product.image.toString('base64') %>" alt="<%= product.name %>">
+                    <h2><%= product.name %></h2>
+                    <p>$<%= product.price %></p>
+                    <button class="add-to-cart" data-id="<%= product._id %>">Add to Cart</button>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ranch. All rights reserved.</p>
+    </footer>
+
+    
+</body>
+</html>
