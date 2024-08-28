@@ -1,7 +1,7 @@
 const { findOne } = require('../models/product');
 const userModel = require('../models/user');
 const {hashPassword,comparePassword} = require('../utils/bcryptUtils');
-const jwt = require('json');
+const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const loginController = async (req,res)=>{

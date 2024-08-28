@@ -7,19 +7,23 @@ const signupController = async (req,res)=>{
 
     let findUser = await userModel.findOne({email:email});
     
-    if(findUser){
-        return res.send('email already exists');
+    if(!findUser){
+        let hashedPassword = await hashPassword(password);
         
-    }
-    let hashedPassword = bcryptUtils.hashPassword(password);
-    let user = await userModel.create({
+        let user = await userModel.create({
         name,
         email,
         password:hashedPassword
     });
     res.send("created");
+        
+        
+    }else{
+        return res.send('email already exists');
+    }
+    
 }catch(err){
-    console.log(err);
+    res.send(err);
 }
     
 
