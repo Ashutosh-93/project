@@ -18,11 +18,12 @@ app.use(cookieParser());
 
 
 app.get('/',(req,res)=>{
+    res.cookie("token", "");
     res.render('loginAndSignup');
 });
 app.use('/',landingPage);
 app.use('/user',signin);
-app.use('/owner',createProduct);
+app.use('/owner',createProduct); 
 app.use('/shop',shop);
 // app.get('/',(req,res)=>{
 //     res.render('landing');

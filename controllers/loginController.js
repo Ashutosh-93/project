@@ -14,10 +14,11 @@ const loginController = async (req,res)=>{
     }
     let result = await comparePassword(password,user.password);
     
-    if(!result){
+    if(!result){ 
         return res.status(401).json({error:"Invalid email or password"});
     }
-    const token = jwt.sign({email:user.email,id:user._id},"secret");
+    const token = jwt.sign({email:user.email,id:user._id},process.env.SECRET_KEY);
+    
     res.cookie('token',token);
     res.redirect('/shop');
 
