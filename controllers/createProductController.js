@@ -14,7 +14,7 @@ const createProductController = async function(req, res) {
 
         res.redirect('/owner');
     } catch (error) {
-        console.error('Error creating product:', error);
+        console.log('Error creating product:', error);
         res.status(500).send('Server error while creating product');
     }
 };

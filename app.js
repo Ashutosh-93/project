@@ -8,6 +8,7 @@ const signin = require('./routes/signIn');
 const createProduct = require('./routes/createProduct');
 const shop = require('./routes/shopRoute');
 const landingPage = require('./routes/shopRoute');
+const addToCart = require('./routes/cartRoute');
 
 app.set('view engine','ejs');
 app.use(express.static(path.join(__dirname,'public')));
@@ -22,6 +23,7 @@ app.get('/',(req,res)=>{
     res.render('loginAndSignup');
 });
 app.use('/',landingPage);
+app.use('/addToCart',addToCart);
 app.use('/user',signin);
 app.use('/owner',createProduct); 
 app.use('/shop',shop);

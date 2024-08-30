@@ -42,38 +42,48 @@ nav ul li a:hover {
 
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+    gap: 16px;
+   
     padding: 40px;
     max-width: 1200px;
     margin: 0 auto;
 }
 
 .product-card {
+    height:350px;
+    width: 210px;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 10px;
-    padding: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 0px;
+    padding-top: 10px;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-card img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    width: 200px;
+    height: 210px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 2px;
+    
 }
 
 .product-card h2 {
     color: #7c0a02;
-    margin-bottom: 10px;
+    margin:5px;
+   
 }
 
 .product-card p {
     font-size: 18px;
     color: #333;
-    margin-bottom: 20px;
+    margin-bottom: 9px;
+    margin-top: 13px;
 }
 
 button.add-to-cart {
