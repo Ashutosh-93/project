@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="/stylesheets/cart.css"> <!-- Link to the external CSS file -->
+</head>
+<body>
+    <div class="cart-container">
+        <h1>Your Cart</h1>
+        <ul class="cart-items">
+            <% cartItems.forEach(item => { %>
+            <li class="cart-item">
+                <div class="product-info">
+                    <div class="product-image">
+                        <img src="data:image/png;base64,<%= item.productId.image.toString('base64') %>"  alt="<%= item.productId.name %>">
+                    </div>
+                    <div class="product-details">
+                        <h2><%= item.productId.name %></h2>
+                        <p>Price: $<span class="item-price"><%= item.productId.price %></span></p>
+                        <div class="quantity-control">
+                            <button class="decrease" data-id="<%= item.productId._id %>">-</button>
+                            <span class="quantity"><%= item.quantity %></span>
+                            <button class="increase" data-id="<%= item.productId._id %>">+</button>
+                        </div>
+                        <p>Total: $<span class="total-item-price"><%= item.productId.price * item.quantity %></span></p>
+                    </div>
+                </div>
+            </li>
+            <% }); %>
+        </ul>
+        <div class="cart-footer">
+            <h3>Total Price: $<span id="total-price"></span></h3>
+            <button id="checkout-button">Proceed to Checkout</button>
+        </div>
+        
+    </div>
+
+    <script>
+function addToCart(){
+     let total = 0;
+     document.querySelectorAll('.total-item-price').forEach(item => total+=parseInt(item.innerText));
+     let totalPrice = document.querySelector('#total-price');
+     totalPrice.innerText =total;
+
+     
+}
+addToCart();
+document.querySelectorAll('.quantity-control button').forEach(function(btn){
+     btn.addEventListener('click',async function(){
+    
+    let quantityE1 = this.parentElement.querySelector('.quantity');
+    let productId = this.getAttribute('data-id');
+    let totalItemPrice = this.parentElement.parentElement.querySelector('.total-item-price');
+    let itemPriceE1 = this.parentElement.parentElement.querySelector('.item-price');
+    let quantity = parseInt(quantityE1.innerText);
+        let itemPrice = parseFloat(itemPriceE1.innerText);
+    let isIncrease = this.classList.contains('increase');
+
+// Update quantity
+if (isIncrease) {
+    quantity += 1;
+} else if (quantity > 1) {
+    quantity -= 1;
+}
+    quantityE1.innerText = quantity;
+    totalItemPrice.innerText = (itemPrice*quantity).toFixed(2);
+    addToCart();
+ 
+    try {
+            await fetch('/cartRefresh', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    productId,
+                    quantity
+                })
+            });
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    
+})});
+    </script>
+</body>
+</html> 

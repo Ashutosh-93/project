@@ -7,7 +7,7 @@ const verifyToken = async (req,res,next)=>{
     if(!token){
         return res.redirect('/');
     }
-    
+     
     try{
     let decoded = await jwt.verify(token,process.env.SECRET_KEY);
     req.email = decoded.email;

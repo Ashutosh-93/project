@@ -9,4 +9,4 @@ const signupController = require('../controllers/signupController');
 
 router.post('/login',loginController)
 router.post('/register',signupController);
-module.exports = router 
+module.exports = router   

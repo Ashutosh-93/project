@@ -20,7 +20,7 @@ const loginController = async (req,res)=>{
     const token = jwt.sign({email:user.email,id:user._id},process.env.SECRET_KEY);
     
     res.cookie('token',token);
-    res.redirect('/shop');
+    res.redirect('/landing');
 
 }
 

@@ -7,7 +7,7 @@ const verifyToken = require('../middlewares/authMiddleware');
 
 router.get('/',verifyToken,shopController);
 router.get('/landing',(req,res)=>{
-    res.render('landing');
+    res.render('landing'); 
 })
 
 module.exports = router;
